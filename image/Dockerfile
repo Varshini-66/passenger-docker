@@ -16,6 +16,9 @@ ADD image/ /pd_build/
 # Define additional build-time arguments (like proxy, if needed)
 ARG http_proxy
 
+# List the contents of /pd_build to verify the script is copied
+RUN ls -l /pd_build/
+
 # Run the installation script, ensuring it's copied to /pd_build
 RUN --mount=type=cache,target=/build_cache /usr/bin/nice /pd_build/install_image.sh
 
