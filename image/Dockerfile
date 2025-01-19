@@ -1,27 +1,27 @@
 # syntax=docker/dockerfile:1.4
 
-# Define build-time arguments for ARCH and NAME
+# Define build-time arguments for architecture (ARCH) and base image name (NAME)
 ARG ARCH=x86_64
 ARG NAME=ubuntu
 
-# Use the ARG variables properly with `${}` for expansion
+# Use the ARG variables properly with ${} for expansion in the FROM statement
 FROM ${NAME}-base:latest-${ARCH}
 
 # Maintainer information
 MAINTAINER Phusion <info@phusion.nl>
 
-# Add the current directory to the image's /pd_build folder
+# Add the current directory contents to /pd_build in the container
 ADD . /pd_build
 
-# Define additional build-time arguments (proxy, if needed)
+# Additional build-time arguments (like proxy, if needed)
 ARG http_proxy
 
-# Install dependencies and run the installation script using a build cache for improved performance
+# Use build cache to install dependencies and run the installation script
 RUN --mount=type=cache,target=/build_cache \
     /usr/bin/nice /pd_build/install_image.sh
 
 # Define the default command to run when the container starts
 CMD ["/sbin/my_init"]
 
-# Expose necessary ports
+# Expose the necessary ports
 EXPOSE 80 443
