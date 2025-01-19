@@ -1,13 +1,10 @@
-
-
-
 # syntax=docker/dockerfile:1.4
 
 # Define build-time variables
-ARG ARCH
-ARG NAME
+ARG ARCH=x86_64
+ARG NAME=ubuntu
 
-# Ensure that the ARG variables are properly replaced in the FROM instruction
+# Use the ARG variables properly with `${}` for expansion
 FROM ${NAME}-base:latest-${ARCH}
 
 # Maintainer information
