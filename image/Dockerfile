@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4
 
-# Define build-time variables
+# Define build-time arguments for ARCH and NAME
 ARG ARCH=x86_64
 ARG NAME=ubuntu
 
