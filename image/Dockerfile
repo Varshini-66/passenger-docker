@@ -5,7 +5,7 @@ ARG ARCH=x86_64
 ARG NAME=ubuntu
 
 # Use the ARG variables properly with ${} for expansion in the FROM statement
-FROM ${NAME}-base:latest-${ARCH}
+FROM ${NAME}:latest
 
 # Maintainer information
 MAINTAINER Phusion <info@phusion.nl>
